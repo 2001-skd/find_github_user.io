@@ -5,17 +5,20 @@ function fetchUser() {
   let inputValue = document.getElementById("input_value").value;
   let suggestion = document.getElementById("suggestion");
   let profileCard = document.getElementById("profile_card");
+  let loading = document.getElementById("loading");
   let url = `https://api.github.com/users/${inputValue}`;
   if (inputValue === "") {
     suggestion.style.display = "block";
   } else {
     suggestion.style.display = "none";
+    loading.style.display = "block";
 
     // console.log(inputValue);
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        loading.style.display = "none";
         if (data.message === "Not Found") {
           //   console.log("User Not Found");
           profileCard.innerHTML = `User Not Found`;
