@@ -22,7 +22,7 @@ function fetchUser() {
           profileCard.style.display = "flex";
         } else {
           profileCard.innerHTML = `<div>
-          <img src=${data.avatar_url} />
+          <img src=${data.avatar_url} alt="github_avatar"/>
         </div>
         <div class="profile_details">
           <h4>${data.name}</h4>
@@ -48,13 +48,18 @@ function fetchUser() {
           </div>
 
           <button class="profile_btn" id="profile_btn">
-            <a href=${data.html_url}>Github User Profile</a>
+            <a href=${data.html_url} target="_blank">Github User Profile</a>
           </button>
         </div>`;
 
           profileCard.style.display = "flex";
           document.getElementById("input_value").value = "";
         }
+      })
+      .catch((error) => {
+        console.error("Something Went Wrong", error);
+        profileCard.innerHTML = `Something Went Wrong Please Try Again`;
+        profileCard.style.display = "flex";
       });
   }
 }
